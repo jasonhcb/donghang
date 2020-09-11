@@ -78,7 +78,7 @@ class MY_GUI():
             if(res == False):
                 messagebox.showinfo('提示','赶紧去买票')
             else:
-                time.sleep(10)
+                time.sleep(30)
 
     # 抢票
     def donghang(self,url,flight):

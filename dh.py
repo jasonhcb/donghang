@@ -3,35 +3,39 @@ import time
 from splinter import Browser
 
 def donghang(url,flight):
-    browser = Browser('chrome',headless=True) # defaults to firefox
+    browser = Browser('chrome') # defaults to firefox
     browser.visit(url)
+
     # browser.visit('http://www.ceair.com/booking/sha-adnh-200724_CNY.html')
-    # browser.find_by_name('search').click()
-
+    # browser.find_by_css('.ceair-poptip').click()
+    time.sleep(5)
+    browser.find_by_css('.ceair-input__inner_homesearch').first().fill('敦煌')
     # search_results_xpath = '//*[@class="flight"]/a'  # simple, right?
-    search_results = browser.find_by_css('.flight')
+    # search_results = browser.find_by_css('.shopping-parent-item-container')
 
-    for search_result in search_results:
-        str = search_result.text
-        sp_str = str.split('\n')
-        # print(sp_str[0])
-        if(sp_str[0].find(flight) != -1):
-            price = search_result.find_by_css('.economy').text
-            if(price.find('￥') != -1):
-                print('有票')
-                return False
-            else:
-                print('无票')
-                return True
-    browser.quit()
+    # for search_result in search_results:
+    #     str = search_result.text
+    #     print(str)
+        # sp_str = str.split('\n')
+        # # print(sp_str[0])
+        # if(sp_str[0].find(flight) != -1):
+        #     price = search_result.find_by_css('.economy').text
+        #     if(price.find('￥') != -1):
+        #         print('有票')
+        #         return False
+        #     else:
+        #         print('无票')
+        #         return True
+    # browser.quit()
     
 
 
-url = 'http://www.ceair.com/booking/sha-kmg-200724_CNY.html'
-flight = 'MU5818'
+url = 'https://global.ceair.com'
+flight = 'MU2216'
 
-isprice = True
-while isprice:
-    isprice = donghang(url,flight)
-    time.sleep(10)
+donghang(url,flight)
+# isprice = True
+# while isprice:
+#     isprice = donghang(url,flight)
+#     time.sleep(10)
     
